@@ -15,8 +15,9 @@ import Team from './pages/Team';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
-import BookingForm from './components/BookingModal';
+import BookingForm from './pages/BookingPage';
 import './index.css';
+import BookingPage from './pages/BookingPage';
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -32,12 +33,12 @@ createRoot(document.getElementById('root')).render(
 
           <Route path="events" element={<Events />} />
           <Route path="events/:slug" element={<EventDetail />} />
+          <Route path="events/:slug/book" element={<BookingPage />} />
 
           <Route path="sponsors" element={<Sponsors />} />
           <Route path="team" element={<Team />} />
           <Route path="gallery" element={<Gallery />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="events/:slug/book" element={<BookingForm />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

@@ -129,29 +129,29 @@ export default function ContactPage() {
              </div>
           </div>
 
-          {/* FAQ SECTION */}
+          {/* VENUE MAP (Moved into left column) */}
           <div className="space-y-6">
-             <h3 className="text-2xl font-bold text-white flex items-center gap-2">
-              <HelpCircle className="text-red-600" size={24} />
-              Frequently Asked Questions
+            <h3 className="text-2xl font-bold text-white flex items-center gap-2">
+              <MapPin className="text-red-600" size={24} />
+              Venue Map
             </h3>
-            <div className="space-y-4">
-              {FAQS.map((faq, idx) => (
-                <div key={idx} className="bg-neutral-900/30 border border-white/5 rounded-lg overflow-hidden">
-                  <button 
-                    onClick={() => toggleFaq(idx)}
-                    className="w-full flex items-center justify-between p-4 text-left hover:bg-white/5 transition-colors"
-                  >
-                    <span className="font-medium text-gray-200">{faq.question}</span>
-                    {openFaq === idx ? <ChevronUp size={18} className="text-red-500" /> : <ChevronDown size={18} className="text-gray-500" />}
-                  </button>
-                  {openFaq === idx && (
-                    <div className="p-4 pt-0 text-gray-400 text-sm leading-relaxed border-t border-white/5 bg-neutral-900/50">
-                      {faq.answer}
-                    </div>
-                  )}
-                </div>
-              ))}
+            <div className="bg-neutral-900/30 border border-white/5 rounded-xl overflow-hidden">
+              <div className="h-64 w-full grayscale invert filter hover:grayscale-0 hover:invert-0 transition-all duration-700">
+                <iframe
+                  src="https://maps.google.com/maps?q=St.+Martin's+Engineering+College+Dhulapally&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  title="SMEC Location"
+                />
+              </div>
+              <div className="p-4 border-t border-white/5 bg-neutral-900/50">
+                <a href="https://maps.google.com/?q=St+Martins+Engineering+College" target="_blank" rel="noreferrer" className="inline-block text-sm font-bold uppercase tracking-wider text-white/70 hover:text-white underline decoration-red-600/50">
+                  Open in Google Maps
+                </a>
+              </div>
             </div>
           </div>
 
@@ -245,27 +245,31 @@ export default function ContactPage() {
 
       </main>
 
-      {/* VENUE MAP (Bottom) */}
+      {/* FAQ SECTION (moved to bottom) */}
       <div className="w-full border-t border-white/10">
-        {/* Map Header */}
-        <div className="bg-neutral-900 py-4 text-center border-b border-white/5">
-             <span className="text-white/60 text-sm font-bold uppercase tracking-widest">
-                <MapPin className="inline-block mb-1 mr-1 text-red-600" size={14}/> 
-                Venue Location: SMEC Campus
-             </span>
-        </div>
-        
-        {/* IFrame */}
-        <div className="h-96 w-full grayscale invert filter hover:grayscale-0 hover:invert-0 transition-all duration-700">
-            <iframe
-                src="https://maps.google.com/maps?q=St.+Martin's+Engineering+College+Dhulapally&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                title="SMEC Location"
-            />
+        <div className="max-w-7xl mx-auto px-6 py-12">
+          <h3 className="text-2xl font-bold text-white flex items-center gap-2 mb-6">
+            <HelpCircle className="text-red-600" size={24} />
+            Frequently Asked Questions
+          </h3>
+          <div className="space-y-4">
+            {FAQS.map((faq, idx) => (
+              <div key={idx} className="bg-neutral-900/30 border border-white/5 rounded-lg overflow-hidden">
+                <button
+                  onClick={() => toggleFaq(idx)}
+                  className="w-full flex items-center justify-between p-4 text-left hover:bg-white/5 transition-colors"
+                >
+                  <span className="font-medium text-gray-200">{faq.question}</span>
+                  {openFaq === idx ? <ChevronUp size={18} className="text-red-500" /> : <ChevronDown size={18} className="text-gray-500" />}
+                </button>
+                {openFaq === idx && (
+                  <div className="p-4 pt-0 text-gray-400 text-sm leading-relaxed border-t border-white/5 bg-neutral-900/50">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
