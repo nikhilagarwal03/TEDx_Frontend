@@ -48,54 +48,58 @@ export default function BookingPage() {
   );
 
   return (
-    <div className="min-h-screen bg-black text-white pt-24 pb-12 px-6 font-sans">
-      <div className="max-w-6xl mx-auto">
-        
-        {/* Back Link */}
-        <Link to={`/events/${slug}`} className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8 transition-colors">
-          <ArrowLeft size={20} /> Back to Event Details
-        </Link>
+    <main className="max-w-6xl mx-auto px-4 py-8">
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          
-          {/* Left Column: Context */}
-          <div className="space-y-8">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
-                Complete Your <br /><span className="text-red-600">Registration</span>
-              </h1>
-              <p className="text-xl text-gray-400">
-                You are booking a seat for <strong>{event.name}</strong>. Please fill out the details carefully.
-              </p>
-            </div>
 
-            {/* Event Summary Card */}
-            <div className="bg-neutral-900 border border-white/10 rounded-xl p-6">
-              <h3 className="text-lg font-bold text-white mb-4 uppercase tracking-wider border-b border-white/10 pb-2">Event Summary</h3>
-              <div className="space-y-4 text-gray-300">
-                <div className="flex items-center gap-3">
-                  <Calendar className="text-red-600" size={20} />
-                  <span>{new Date(event.date).toLocaleString()}</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <MapPin className="text-red-600" size={20} />
-                  <span>{event.venue || "Venue TBA"}</span>
-                </div>
-                <div className="mt-4 pt-4 border-t border-white/10 flex justify-between items-center">
-                  <span className="text-sm font-bold text-gray-500 uppercase">Ticket Price</span>
-                  <span className="text-xl font-bold text-white">{event.price || "Free"}</span>
+      <div className="min-h-screen bg-black text-white pt-24 pb-12 px-6 font-sans">
+        <div className="max-w-6xl mx-auto">
+
+          {/* Back Link */}
+          <Link to={`/events/${slug}`} className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8 transition-colors">
+            <ArrowLeft size={20} /> Back to Event Details
+          </Link>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+            {/* Left Column: Context */}
+            <div className="space-y-8">
+              <div>
+                <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
+                  Complete Your <br /><span className="text-red-600">Registration</span>
+                </h1>
+                <p className="text-xl text-gray-400">
+                  You are booking a seat for <strong>{event.name}</strong>. Please fill out the details carefully.
+                </p>
+              </div>
+
+              {/* Event Summary Card */}
+              <div className="bg-neutral-900 border border-white/10 rounded-xl p-6">
+                <h3 className="text-lg font-bold text-white mb-4 uppercase tracking-wider border-b border-white/10 pb-2">Event Summary</h3>
+                <div className="space-y-4 text-gray-300">
+                  <div className="flex items-center gap-3">
+                    <Calendar className="text-red-600" size={20} />
+                    <span>{new Date(event.date).toLocaleString()}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <MapPin className="text-red-600" size={20} />
+                    <span>{event.venue || "Venue TBA"}</span>
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-white/10 flex justify-between items-center">
+                    <span className="text-sm font-bold text-gray-500 uppercase">Ticket Price</span>
+                    <span className="text-xl font-bold text-white">{event.price || "Free"}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Right Column: The Form Component */}
-          <div>
-            <BookingForm event={event} />
-          </div>
+            {/* Right Column: The Form Component */}
+            <div>
+              <BookingForm event={event} />
+            </div>
 
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

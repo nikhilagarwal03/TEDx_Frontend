@@ -29,8 +29,8 @@ export default function TeamPage() {
           api.get('/admin/organizers/public/list')
         ]);
 
-        const extract = (res) => (res.status === 'fulfilled' && res.value?.data?.success) 
-          ? res.value.data.data 
+        const extract = (res) => (res.status === 'fulfilled' && res.value?.data?.success)
+          ? res.value.data.data
           : (res.value?.data || []);
 
         const fetchedCoords = extract(coordRes);
@@ -53,84 +53,90 @@ export default function TeamPage() {
   // "ID Card" Style Component
   const TeamCard = ({ member, type }) => {
     const role = member.role || member.designation || member.department || "Team Member";
-    
-    return (
-      <div className="group relative w-full h-[450px] bg-neutral-900 rounded-3xl overflow-hidden border border-white/5 hover:border-red-600/50 transition-all duration-500 shadow-xl">
-        {/* Full Height Image */}
-        <div className="absolute inset-0">
-          <img 
-            src={buildImg(member.photo)} 
-            alt={member.name} 
-            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-            onError={(e) => e.currentTarget.src = "https://placehold.co/600x800/222/FFF?text=TEDx+Member"}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500" />
-        </div>
 
-        {/* Info Slide Up */}
-        <div className="absolute bottom-0 left-0 w-full p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-          <div className="w-10 h-1 bg-red-600 mb-3 transition-all duration-300 group-hover:w-full" />
-          
-          <h3 className="text-2xl font-bold text-white mb-1 leading-tight">{member.name}</h3>
-          <p className="text-red-500 font-bold uppercase tracking-widest text-xs mb-3">{role}</p>
-          
-          <div className="h-0 group-hover:h-auto overflow-hidden transition-all duration-300 opacity-0 group-hover:opacity-100">
-             <p className="text-gray-300 text-sm line-clamp-3 mb-4 leading-relaxed">
-               {member.bio || `A dedicated ${type} contributing to the success of TEDxSMEC.`}
-             </p>
-             <div className="flex gap-4 pt-2 border-t border-white/10">
-               {member.linkedin && <a href={member.linkedin} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors"><Linkedin size={20} /></a>}
-               {member.twitter && <a href={member.twitter} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors"><Twitter size={20} /></a>}
-               {member.email && <a href={`mailto:${member.email}`} className="text-gray-400 hover:text-white transition-colors"><Mail size={20} /></a>}
-             </div>
+    return (
+      <main className="max-w-6xl mx-auto px-4 py-8">
+
+        <div className="group relative w-full h-[450px] bg-neutral-900 rounded-3xl overflow-hidden border border-white/5 hover:border-red-600/50 transition-all duration-500 shadow-xl">
+          {/* Full Height Image */}
+          <div className="absolute inset-0">
+            <img
+              src={buildImg(member.photo)}
+              alt={member.name}
+              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+              onError={(e) => e.currentTarget.src = "https://placehold.co/600x800/222/FFF?text=TEDx+Member"}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500" />
+          </div>
+
+          {/* Info Slide Up */}
+          <div className="absolute bottom-0 left-0 w-full p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+            <div className="w-10 h-1 bg-red-600 mb-3 transition-all duration-300 group-hover:w-full" />
+
+            <h3 className="text-2xl font-bold text-white mb-1 leading-tight">{member.name}</h3>
+            <p className="text-red-500 font-bold uppercase tracking-widest text-xs mb-3">{role}</p>
+
+            <div className="h-0 group-hover:h-auto overflow-hidden transition-all duration-300 opacity-0 group-hover:opacity-100">
+              <p className="text-gray-300 text-sm line-clamp-3 mb-4 leading-relaxed">
+                {member.bio || `A dedicated ${type} contributing to the success of TEDxSMEC.`}
+              </p>
+              <div className="flex gap-4 pt-2 border-t border-white/10">
+                {member.linkedin && <a href={member.linkedin} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors"><Linkedin size={20} /></a>}
+                {member.twitter && <a href={member.twitter} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors"><Twitter size={20} /></a>}
+                {member.email && <a href={`mailto:${member.email}`} className="text-gray-400 hover:text-white transition-colors"><Mail size={20} /></a>}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </main>
     );
   };
 
   if (loading) return <div className="min-h-screen bg-black flex items-center justify-center text-red-600 font-bold animate-pulse">LOADING TEAM...</div>;
 
   return (
-    <div className="bg-black min-h-screen pt-24 pb-20 px-6">
-      
-      <div className="max-w-7xl mx-auto text-center mb-20">
-        <h1 className="text-5xl md:text-7xl font-black text-white mb-6">
-          The <span className="text-red-600">Force</span> Behind
-        </h1>
-        <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-          Meet the visionaries and the executers working tirelessly to bring ideas to the stage.
-        </p>
-      </div>
+    <main className="max-w-6xl mx-auto px-4 py-8">
 
-      <div className="max-w-7xl mx-auto space-y-24">
-        
-        {/* 1. FACULTY COORDINATORS */}
-        {coordinators.length > 0 && (
-          <section>
-            <div className="flex items-center gap-4 mb-10 border-b border-white/10 pb-4">
-              <span className="text-4xl font-black text-red-600 opacity-20">01</span>
-              <h2 className="text-3xl font-bold text-white">Faculty Coordinators</h2>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {coordinators.map((c, i) => <TeamCard key={c._id || i} member={c} type="Coordinator" />)}
-            </div>
-          </section>
-        )}
+      <div className="bg-black min-h-screen pt-24 pb-20 px-6">
 
-        {/* 2. ORGANIZERS */}
-        {organizers.length > 0 && (
-          <section>
-             <div className="flex items-center gap-4 mb-10 border-b border-white/10 pb-4">
-              <span className="text-4xl font-black text-red-600 opacity-20">02</span>
-              <h2 className="text-3xl font-bold text-white">Organizing Team</h2>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {organizers.map((o, i) => <TeamCard key={o._id || i} member={o} type="Organizer" />)}
-            </div>
-          </section>
-        )}
+        <div className="max-w-7xl mx-auto text-center mb-20">
+          <h1 className="text-5xl md:text-7xl font-black text-white mb-6">
+            The <span className="text-red-600">Force</span> Behind
+          </h1>
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            Meet the visionaries and the executers working tirelessly to bring ideas to the stage.
+          </p>
+        </div>
+
+        <div className="max-w-7xl mx-auto space-y-24">
+
+          {/* 1. FACULTY COORDINATORS */}
+          {coordinators.length > 0 && (
+            <section>
+              <div className="flex items-center gap-4 mb-10 border-b border-white/10 pb-4">
+                <span className="text-4xl font-black text-red-600 opacity-20">01</span>
+                <h2 className="text-3xl font-bold text-white">Faculty Coordinators</h2>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                {coordinators.map((c, i) => <TeamCard key={c._id || i} member={c} type="Coordinator" />)}
+              </div>
+            </section>
+          )}
+
+          {/* 2. ORGANIZERS */}
+          {organizers.length > 0 && (
+            <section>
+              <div className="flex items-center gap-4 mb-10 border-b border-white/10 pb-4">
+                <span className="text-4xl font-black text-red-600 opacity-20">02</span>
+                <h2 className="text-3xl font-bold text-white">Organizing Team</h2>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                {organizers.map((o, i) => <TeamCard key={o._id || i} member={o} type="Organizer" />)}
+              </div>
+            </section>
+          )}
+        </div>
       </div>
-    </div>
+    </main>
   );
 }

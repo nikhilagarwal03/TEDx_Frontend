@@ -58,7 +58,7 @@ export default function App() {
     <div className="min-h-screen bg-black text-white selection:bg-tedx-red/30">
       <Navbar onNavigate={handleNavigate} id="navbar" />
 
-      <main className="max-w-6xl mx-auto px-4 py-8">
+      <main>
         <Outlet />
       </main>
 
