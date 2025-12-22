@@ -10,12 +10,14 @@ import SponsorsSection from "../components/SponsorsSection";
 // import MediaSection from "../components/MediaSection";
 import CommunitySection from "../components/CommunitySection";
 import ContactSection from "../components/ContactSection";
+import CountdownSection from "@/components/CountdownSection";
 
 export default function Home() {
   return (
     <div className="bg-black text-white selection:bg-tedx-red/30">
       <main>
         <Hero />
+        <CountdownSection />
         <div className="max-w-6xl mx-auto px-4 py-8 ">
           <AboutSection />
           <SpeakersSection />

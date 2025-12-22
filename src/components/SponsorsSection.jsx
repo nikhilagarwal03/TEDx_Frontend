@@ -45,16 +45,12 @@ export default function SponsorsSection() {
   if (loading) return null;
 
   return (
-    <section id="sponsors" className="relative py-20 bg-black overflow-hidden border-t border-white/10">
+    <section id="sponsors" className="relative py-12 sm:py-16 md:py-20 bg-black overflow-hidden border-t border-white/10">
       
       {/* 1. HEADER */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 mb-12 flex flex-col items-center text-center">
-        <span className="text-red-500 font-bold tracking-[0.2em] uppercase text-xs mb-3">
-          Our Supporters
-        </span>
-        <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">
-          Partners in <span className="text-white">Innovation</span>
-        </h2>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 mb-8 md:mb-12 flex flex-col items-center text-center">
+        <span className="eyebrow mb-3">Our Supporters</span>
+        <h2 className="heading-section">Partners in <span className="text-white">Innovation</span></h2>
       </div>
 
       {/* 2. MARQUEE WRAPPER */}
@@ -65,7 +61,7 @@ export default function SponsorsSection() {
         <div className="hidden md:block absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-20 pointer-events-none" />
 
         {/* TRACK */}
-        <div className="sponsor-track flex items-center w-max gap-6 md:gap-10">
+        <div className="sponsor-track flex items-center w-max gap-4 sm:gap-6 md:gap-10">
           {loopList.map((sp, idx) => {
             const key = sp._id || `${sp.name}-${idx}`;
             const src = sp._id.startsWith("spon-") ? sp.logo : buildImg(sp.logo || sp.logoUrl);
@@ -74,7 +70,7 @@ export default function SponsorsSection() {
               <div
                 key={key}
                 className="sponsor-item relative flex items-center justify-center 
-                           w-48 h-28 md:w-64 md:h-36 
+                           w-40 h-24 sm:w-48 sm:h-28 md:w-64 md:h-36 
                            bg-white/30 backdrop-blur-sm
                            border border-white/10 rounded-xl
                            hover:border-red-600/50 hover:bg-white/50 hover:shadow-[0_0_20px_rgba(220,38,38,0.2)]
@@ -85,7 +81,7 @@ export default function SponsorsSection() {
                 <img
                   src={src}
                   alt={sp.name}
-                  className="max-h-12 md:max-h-16 max-w-[75%] object-contain 
+                  className="max-h-10 sm:max-h-12 md:max-h-16 max-w-[70%] sm:max-w-[75%] object-contain 
                              opacity-100 brightness-110 filter drop-shadow-lg
                              transform hover:scale-105 transition-transform duration-300"
                 />
@@ -105,7 +101,7 @@ export default function SponsorsSection() {
       <div className="relative z-10 mt-8 text-center">
         <Link 
           to="/sponsors" 
-          className="inline-block px-8 py-3 border border-white/10 hover:border-red-600 rounded-full text-xs font-bold text-white uppercase tracking-widest hover:bg-red-600/10 transition-all"
+          className="inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3 sm:py-4 border border-white/10 hover:border-red-600 rounded-full text-[10px] sm:text-xs font-black text-white uppercase tracking-widest hover:bg-red-600/10 transition-all"
         >
           Become a Sponsor
         </Link>
